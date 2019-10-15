@@ -1,0 +1,11 @@
+<div>
+  <div [ngSwitch]="state">
+    <div *ngSwitchCase="'apiKey'">
+      1
+    </div>
+
+    <div *ngSwitchCase="'session'">
+      <button *ngIf="urlState2"><a href="{{ urlState2 }}">Validate token</a></button>
+    </div>
+  </div>
+</div>

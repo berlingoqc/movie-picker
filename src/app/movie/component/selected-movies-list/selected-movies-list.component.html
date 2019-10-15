@@ -1,0 +1,20 @@
+<mat-card style="padding-bottom: 10px;">
+  <mat-list>
+    <div>
+      <h3 matSubheader>
+        <span>Selected film for pick</span>
+        <span class="example-fill-remaining-space"></span>
+        <span>{{ moviePicker.selectedMovies.length }} movies in the list</span>
+      </h3>
+    </div>
+    <app-movies-list [movies]="getData()"></app-movies-list>
+  </mat-list>
+  <mat-card-footer>
+    <div class="container-center" style="padding-bottom: 10px;">
+      <mat-chip-list>
+        <mat-chip (click)="previous()"><mat-icon>keyboard_arrow_left</mat-icon></mat-chip>
+        <mat-chip (click)="next()"><mat-icon>keyboard_arrow_right</mat-icon></mat-chip>
+      </mat-chip-list>
+    </div>
+  </mat-card-footer>
+</mat-card>

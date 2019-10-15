@@ -1,0 +1,10 @@
+.main-container {
+  display: flex;
+  min-width: 900px;
+  align-items: center;
+  justify-content: center;
+}
+
+.main-container div {
+  min-width: 300px;
+}

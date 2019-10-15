@@ -1,0 +1,10 @@
+<div *ngIf="account">
+  <h1>Hello {{ account.username }}</h1>
+
+  <div class="container-row">
+    <app-movie-lists-list class="col" [accountID]="account.id"></app-movie-lists-list>
+    <app-selected-movie-result class="col"></app-selected-movie-result>
+  </div>
+
+  <app-selected-movies-list></app-selected-movies-list>
+</div>

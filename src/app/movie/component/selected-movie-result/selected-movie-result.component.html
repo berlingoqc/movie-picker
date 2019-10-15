@@ -1,0 +1,27 @@
+<div class="container-center">
+  <button mat-button *ngIf="!moviePicker.randomMovie" (click)="moviePicker.getRandom()">Pick random movie</button>
+  <mat-card *ngIf="moviePicker.randomMovie" class="example-card">
+    <mat-card-header>
+      <mat-card-title>{{ moviePicker.randomMovie.title }}</mat-card-title>
+      <mat-card-subtitle></mat-card-subtitle>
+    </mat-card-header>
+    <div class="container-center" style="padding-top: 15px;">
+      <img
+        class="example-header-image"
+        mat-card-image
+        src="http://image.tmdb.org/t/p/w185{{ moviePicker.randomMovie.poster_path }}"
+        alt="Photo of a Shiba Inu"
+      />
+    </div>
+    <mat-card-content>
+      <p>
+        {{ moviePicker.randomMovie.overview }}
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button (click)="clickWatch()">Watch</button>
+      <button mat-button (click)="moviePicker.getRandom()">Next</button>
+      <button mat-button (click)="moviePicker.randomMovie = null">Cancel</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

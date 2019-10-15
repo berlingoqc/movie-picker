@@ -1,0 +1,23 @@
+<mat-card>
+  <h3 matSubheader>Source of the movies</h3>
+  <div class="containter-center">
+    <mat-form-field>
+      <input
+        [(ngModel)]="newListID"
+        type="number"
+        matInput
+        placeholder="ID of the lists"
+        [ngModelOptions]="{ standalone: true }"
+      />
+    </mat-form-field>
+
+    <button mat-icon-button (click)="appendNewLists()"><mat-icon>add</mat-icon></button>
+  </div>
+  <mat-list>
+    <mat-list-item *ngFor="let item of pickerService.lists">
+      <span>{{ item.name }} - {{ item.created_by }}</span>
+      <span class="example-fill-remaining-space"></span>
+      <mat-chip (click)="pickerService.removeLists(item.id)"><mat-icon>delete</mat-icon></mat-chip>
+    </mat-list-item>
+  </mat-list>
+</mat-card>
