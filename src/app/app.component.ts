@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { LoginBottonSheetComponent } from './movie/component/login-botton-sheet/login-botton-sheet.component';
-import { LoginService } from './moviedb/service/login.service';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 
 @Component({
