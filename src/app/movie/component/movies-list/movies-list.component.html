@@ -5,6 +5,7 @@
   <p matLine>Vote average {{ item.vote_average }}</p>
   <div matLine>
     <mat-chip-list>
+      <mat-chip *ngIf="optionAddMovie" (click)="addMovie.emit(item)">Add</mat-chip>
       <mat-chip *ngIf="optionFind" (click)="showFindMovie(item.id)">Find</mat-chip>
       <mat-chip *ngIf="optionDetail" (click)="showDetail(item.id)">Detail</mat-chip>
       <mat-chip *ngIf="optionDelete" (click)="removeItem(item.id)">Supprimer</mat-chip>

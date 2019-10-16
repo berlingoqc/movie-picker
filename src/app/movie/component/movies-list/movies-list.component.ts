@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
+import { DialogFindMovieComponent } from './../../dialog/dialog-find-movie/dialog-find-movie.component';
+import { MatDialog } from '@angular/material/dialog';
 import { Movie } from 'src/app/moviedb/model';
 
 @Component({
@@ -10,12 +12,16 @@ import { Movie } from 'src/app/moviedb/model';
 export class MoviesListComponent implements OnInit {
   @Input() movies: Movie[];
 
+  @Input() optionAddMovie = false;
   @Input() optionSelectable = false;
   @Input() optionDelete = true;
   @Input() optionDetail = true;
   @Input() optionFind = true;
 
-  constructor() {}
+
+  @Output() addMovie = new EventEmitter<Movie>();
+
+  constructor(private matDialog: MatDialog) {}
 
   ngOnInit() {}
 
@@ -25,5 +31,10 @@ export class MoviesListComponent implements OnInit {
 
   showDetail(id: number) {}
 
-  showFindMovie(id: number) {}
+  showFindMovie(id: number) {
+    const dialogRef = this.matDialog.open(DialogFindMovieComponent, {
+      width: '400px',
+      data: this.movies.find(x => x.id === id)
+    });
+  }
 }

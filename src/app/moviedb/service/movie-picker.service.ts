@@ -18,11 +18,10 @@ export class MoviePickerService {
   constructor(private listsAPI: ListsAPI) {}
 
   async addMovieFromList(ids: number[]) {
-    for (let id of ids) {
+    for (const id of ids) {
       const listDetail = await this.listsAPI.getDetails(id).toPromise();
       this.lists.push(listDetail);
       this.selectedMovies.push(...listDetail.items);
-      console.log(this.selectedMovies);
     }
   }
 

@@ -12,9 +12,9 @@ export class MovieAPI extends BaseAPI {
   }
 
   getMovieRecommendation(movie_id: number) {
-    return this.client.get<List<Movie>>(this.getURL(`/movie/${movie_id}/recommendation`, {}));
+    return this.client.get<List<Movie>>(this.getURL(`movie/${movie_id}/recommendations`, {}));
   }
   getMovieSimilar(movie_id: number) {
-    return this.client.get<List<Movie>>(this.getURL(`/movie/${movie_id}/similar`, {}));
+    return this.client.get<List<Movie>>(this.getURL(`movie/${movie_id}/similar`, {}));
   }
 }

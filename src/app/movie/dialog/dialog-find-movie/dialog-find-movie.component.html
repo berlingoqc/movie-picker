@@ -1,0 +1,15 @@
+<h1 mat-dialog-title>Picks additional movies for the list</h1>
+<div mat-dialog-content>
+  <div>
+    <h3>{{movie.title}}</h3>
+    <mat-chip-list>
+      <mat-chip (click)="updateList('recommendation')">Recommendation</mat-chip>
+      <mat-chip (click)="updateList('similar')">Similar</mat-chip>
+    </mat-chip-list>
+  </div>
+
+  <mat-list>
+    <app-movies-list [movies]="selectionMovies" (addMovie)="moviePicker.selectedMovies.push($event)" [optionAddMovie]="true"></app-movies-list>
+  </mat-list>
+
+</div>

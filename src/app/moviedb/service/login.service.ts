@@ -12,9 +12,9 @@ export class LoginService {
 
   getLoginStep(): 'apiKey' | 'session' | 'valid' {
     const ctx = this.ctx.context;
-    if (ctx.settings.api_key == '') {
+    if (!ctx || ctx.settings.api_key === '') {
       return 'apiKey';
-    } else if (!ctx.session_id || ctx.session_id == '') {
+    } else if (!ctx.session_id || ctx.session_id === '') {
       return 'session';
     }
     return 'valid';
@@ -27,13 +27,13 @@ export class LoginService {
   async loginUser(): Promise<NewTokenResp> {
     const ctx = this.ctx.context;
     if (ctx.settings.api_key === '') {
-      throw 'key not set';
+      throw new Error('key not set');
     }
     this.ctx.context.session_id = null;
     this.ctx.context = ctx;
     const respToken = await this.authentication.getRequestToken().toPromise();
     if (!respToken.success) {
-      throw 'token not valid';
+      throw new Error('token not valid');
     }
     ctx.expires_at = respToken.expire_at;
     this.ctx.context = ctx;
@@ -48,6 +48,6 @@ export class LoginService {
       this.ctx.context = ctx;
       return respSession;
     }
-    throw 'session error';
+    throw new Error('session error');
   }
 }

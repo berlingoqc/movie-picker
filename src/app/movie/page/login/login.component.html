@@ -1,11 +1,57 @@
-<div>
-  <div [ngSwitch]="state">
-    <div *ngSwitchCase="'apiKey'">
-      1
-    </div>
+<div class="main-container">
 
-    <div *ngSwitchCase="'session'">
-      <button *ngIf="urlState2"><a href="{{ urlState2 }}">Validate token</a></button>
+<div class="flex-container center-card">
+  <mat-card class="row">
+    <mat-card-header>
+      <mat-card-title>Welcome to Movie picker</mat-card-title>
+      <mat-card-subtitle>Configure your account to use this application</mat-card-subtitle>
+    </mat-card-header>
+    <div class="container-center">
+      <img
+        src="https://www.themoviedb.org/assets/2/v4/logos/408x161-powered-by-rectangle-green-bb4301c10ddc749b4e79463811a68afebeae66ef43d17bcfd8ff0e60ded7ce99.png"
+        alt="">
     </div>
-  </div>
+    <mat-card-content>
+      <mat-horizontal-stepper [linear]="true" #stepper>
+        <mat-step [stepControl]="keyFormGroup">
+          <form [formGroup]="keyFormGroup">
+            <ng-template matStepLabel>Enter your API key from TMDB</ng-template>
+            <mat-form-field>
+              <input matInput placeholder="API key" formControlName="apiKeyCtrl" required>
+            </mat-form-field>
+            <div>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+          </form>
+        </mat-step>
+
+        <mat-step [stepControl]="validatedTokenFormGroup" >
+          <ng-template matStepLabel>Authorized access</ng-template>
+          <div *ngIf="exception">
+            <p>{{exception}}</p>
+          </div>
+          <a *ngIf="urlAuthorization" mat-button href="{{ urlAuthorization }}">Validate token</a>
+          <div>
+            <button mat-button matStepperPrevious>Previous</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </mat-step>
+
+        <mat-step>
+          <ng-template matStepLabel>Done</ng-template>
+          <div *ngIf="exception">
+            <p>{{exception}}</p>
+          </div>
+          {{context.context.session_id}}
+          <div>
+            <button mat-button matStepperNext>Reset</button>
+            <button mat-button matStepperNext (click)="router.navigate(['movie'])">Continue</button>
+          </div>
+        </mat-step>
+
+      </mat-horizontal-stepper>
+    </mat-card-content>
+  </mat-card>
+</div>
+
 </div>

@@ -1,10 +1,12 @@
-<mat-toolbar>
-  <span>Movie picker</span>
+<div class="main-app">
+  <mat-toolbar>
+    <span>Movie picker</span>
 
-  <span class="example-fill-remaining-space"></span>
+    <span class="example-fill-remaining-space"></span>
 
-  <mat-chip (click)="openLoginBottonSheet()">Berlingoqc</mat-chip>
-</mat-toolbar>
-<div class="main-container">
-  <router-outlet></router-outlet>
+    <mat-chip (click)="openLoginBottonSheet()">Berlingoqc</mat-chip>
+  </mat-toolbar>
+  <div class="main-container">
+    <router-outlet></router-outlet>
+  </div>
 </div>

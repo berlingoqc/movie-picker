@@ -18,10 +18,12 @@ export class ContextService {
   get context(): Context {
     if (!this.innerContext) {
       const str = localStorage.getItem('ctx');
-      if (str != 'undefined') {
+      if (str && str !== 'undefined') {
         this.innerContext = JSON.parse(str);
       } else {
-        return undefined;
+        return {
+          settings: {}
+        } as any;
       }
     }
     return this.innerContext;

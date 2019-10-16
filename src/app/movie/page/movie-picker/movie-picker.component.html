@@ -1,4 +1,4 @@
-<div *ngIf="account">
+<div *ngIf="account" >
   <h1>Hello {{ account.username }}</h1>
 
   <div class="container-row">
@@ -6,5 +6,5 @@
     <app-selected-movie-result class="col"></app-selected-movie-result>
   </div>
 
-  <app-selected-movies-list></app-selected-movies-list>
+  <app-selected-movies-list [movies]="moviePickerService.selectedMovies"></app-selected-movies-list>
 </div>
