@@ -22,6 +22,8 @@ body {
 
 .container-row {
   display: flex; /* equal height of the children */
+  flex-direction: row;
+  align-items: stretch;
 }
 
 .col {
@@ -32,6 +34,7 @@ mat-card {
   margin-left: 10px;
   margin-bottom: 10px;
 }
+
 .flex-container {
   padding: 0;
   margin: 0;
