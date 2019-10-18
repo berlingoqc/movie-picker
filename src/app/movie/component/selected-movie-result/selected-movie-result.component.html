@@ -19,7 +19,7 @@
       </p>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-button (click)="clickWatch()">Watch</button>
+      <button mat-button [disabled]="!available" (click)="clickWatch()">Watch</button>
       <button mat-button (click)="moviePicker.getRandom()">Next</button>
       <button mat-button (click)="moviePicker.randomMovie = null">Cancel</button>
     </mat-card-actions>

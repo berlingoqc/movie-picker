@@ -12,7 +12,7 @@ import { MatStepper } from '@angular/material/stepper';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  @ViewChild('stepper') stepper: MatStepper;
+  @ViewChild('stepper', { static: true}) stepper: MatStepper;
 
   urlAuthorization: string;
   exception: string;

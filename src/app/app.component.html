@@ -6,9 +6,23 @@
 
     <mat-chip (click)="openLoginBottonSheet()">Berlingoqc</mat-chip>
   </mat-toolbar>
-  <div class="main-container">
-    <div style="min-width: 80%;">
-      <router-outlet></router-outlet>
-    </div>
-  </div>
+  <mat-sidenav-container>
+    <mat-sidenav mode="side" opened style="flex: grow">
+      <mat-nav-list>
+        <a mat-list-item [routerLink]="['movie']">Movie</a>
+        <a mat-list-item [routerLink]="['movie/collection']">Collection</a>
+      </mat-nav-list>
+
+    </mat-sidenav>
+
+    <mat-sidenav-content style="width: 100%;">
+      <div class="main-container">
+        <div style="min-width: 80%;">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </mat-sidenav-content>
+
+  </mat-sidenav-container>
+
 </div>

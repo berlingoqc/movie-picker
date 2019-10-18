@@ -1,6 +1,7 @@
-import { NgModule, Injector } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Injector, NgModule } from '@angular/core';
 import { NgxJsonrpcModule, RPCClientSettings } from 'ngx-jsonrpc';
+
+import { CommonModule } from '@angular/common';
 import { VideoLibraryAPI } from './video-library.api';
 
 @NgModule({
@@ -12,8 +13,8 @@ import { VideoLibraryAPI } from './video-library.api';
   providers: [VideoLibraryAPI]
 })
 export class KodiModule {
-  constructor(injector: Injector, videoApi: VideoLibraryAPI) {
+  constructor(injector: Injector, videoApi: VideoLibraryAPI, settings: RPCClientSettings) {
+    settings.url = 'localhost:4200';
     RPCClientSettings.injector = injector;
-    videoApi.GetMovies().subscribe(x => console.log(x));
   }
 }

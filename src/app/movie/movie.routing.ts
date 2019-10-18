@@ -1,5 +1,6 @@
 import { RouterModule, Routes } from '@angular/router';
 
+import { CollectionComponent } from './page/collection/collection.component';
 import { LoginComponent } from './page/login/login.component';
 import { LoginGuard } from './../moviedb/guard/login.guard';
 import { MovieComponent } from './movie.component';
@@ -15,6 +16,9 @@ const route: Routes = [
       {
         path: '',
         component: MoviePickerComponent
+      }, {
+        path: 'collection',
+        component: CollectionComponent
       }
     ]
   },

@@ -1,3 +1,5 @@
+import { AvailabilityMoviesService, KodiMovieCollectionProvider, MovieCollectionProvider } from './service/MissingMovies';
+
 import { ApiKeyComponent } from './component/api-key/api-key.component';
 import { CommonModule } from '@angular/common';
 import { DialogFindMovieComponent } from './dialog/dialog-find-movie/dialog-find-movie.component';
@@ -13,6 +15,8 @@ import { MoviesListComponent } from './component/movies-list/movies-list.compone
 import { NgModule } from '@angular/core';
 import { SelectedMovieResultComponent } from './component/selected-movie-result/selected-movie-result.component';
 import { SelectedMoviesListComponent } from './component/selected-movies-list/selected-movies-list.component';
+import { WatchMovieBottomSheetComponent } from './component/watch-movie-bottom-sheet/watch-movie-bottom-sheet.component';
+import { CollectionComponent } from './page/collection/collection.component';
 
 @NgModule({
   declarations: [
@@ -26,10 +30,16 @@ import { SelectedMoviesListComponent } from './component/selected-movies-list/se
     LoginBottonSheetComponent,
     MovieSelectComponent,
     MoviesListComponent,
-    DialogFindMovieComponent
+    DialogFindMovieComponent,
+    WatchMovieBottomSheetComponent,
+    CollectionComponent
   ],
   imports: [CommonModule, MovieRoutingModule, MatModule],
   exports: [MovieRoutingModule],
-  entryComponents: [LoginBottonSheetComponent, DialogFindMovieComponent]
+  providers: [{provide: MovieCollectionProvider, useClass: KodiMovieCollectionProvider}],
+  entryComponents: [LoginBottonSheetComponent, WatchMovieBottomSheetComponent, DialogFindMovieComponent]
 })
-export class MovieModule {}
+export class MovieModule {
+  constructor() {
+  }
+}

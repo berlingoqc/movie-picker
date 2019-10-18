@@ -2,18 +2,29 @@ import { Injectable } from '@angular/core';
 import { ListDetails } from '../model';
 import { ListsAPI } from './../api/lists';
 import { Movie } from './../model/movie';
+import { Subject } from 'rxjs';
 
 function getRandomItem<T>(lists: T[]): T {
   const index = Math.floor(Math.random() * lists.length);
   return lists[index];
 }
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class MoviePickerService {
   lists: ListDetails[] = [];
+
+
+  private innerSelectedMovies: { [id: string]: Movie[]};
+
   selectedMovies: Movie[] = [];
 
+
   randomMovie: Movie;
+
+  movieChange: Subject<Movie[]> = new Subject();
+  randomMovieChange: Subject<Movie> = new Subject();
 
   constructor(private listsAPI: ListsAPI) {}
 
@@ -22,11 +33,13 @@ export class MoviePickerService {
       const listDetail = await this.listsAPI.getDetails(id).toPromise();
       this.lists.push(listDetail);
       this.selectedMovies.push(...listDetail.items);
+      this.movieChange.next(this.selectedMovies);
     }
   }
 
   removeSelectedMovie(id: number) {
     this.selectedMovies = this.selectedMovies.filter(x => x.id != id);
+    this.randomMovieChange.next(null);
   }
 
   removeLists(id: string) {
@@ -40,6 +53,7 @@ export class MoviePickerService {
 
   getRandom(): Movie {
     this.randomMovie = getRandomItem(this.selectedMovies);
+    this.randomMovieChange.next(this.randomMovie);
     return this.randomMovie;
   }
 }

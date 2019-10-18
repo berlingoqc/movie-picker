@@ -1,0 +1,6 @@
+<mat-nav-list>
+  <a mat-list-item *ngFor="let s of data.sources" (click)="dismiss($event)" href="{{s.url}}" target="_blank">
+    <span mat-line>{{s.provider}}</span>
+    <span mat-line>{{labels[s.provider]}}</span>
+  </a>
+</mat-nav-list>
